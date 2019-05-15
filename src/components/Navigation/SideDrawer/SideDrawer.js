@@ -8,7 +8,9 @@ const sideDrawer = props => {
 	// conditionaly attach different css classes
 	return (
 		<div className={classes.SideDrawer}>
-			<Logo />
+			<div className={classes.Logo}>
+				<Logo />
+			</div>
 			<nav>
 				<NavigationItems />
 			</nav>

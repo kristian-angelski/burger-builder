@@ -9,7 +9,9 @@ const toolbar = props => {
 		<header className={classes.Toolbar}>
 			{/* placeholders for now - add components instead*/}
 			<div>MENU</div>
-			<Logo />
+			<div className={classes.Logo}>
+				<Logo />
+			</div>
 			<nav>
 				<NavigationItems />
 			</nav>
