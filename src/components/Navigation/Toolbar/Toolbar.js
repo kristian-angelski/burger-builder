@@ -10,7 +10,9 @@ const toolbar = props => {
 			{/* placeholders for now - add components instead*/}
 			<div>MENU</div>
 			<Logo />
-			<NavigationItems />
+			<nav>
+				<NavigationItems />
+			</nav>
 		</header>
 	);
 };
