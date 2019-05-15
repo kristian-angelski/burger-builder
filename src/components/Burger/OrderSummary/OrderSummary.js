@@ -1,37 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Auxiliary from '../../../hoc/Auxiliary';
 import Button from '../../UI/Button/Button';
 
-const orderSummary = props => {
-	const ingredientSummary = Object.keys(props.ingredients).map(ingKey => {
+class OrderSummary extends Component {
+	// This could be a functional component, doesn't have to be a class - it is a class so that lifecycle methods could be used
+	ingredientSummary = Object.keys(this.props.ingredients).map(ingKey => {
 		return (
-			// console.log(ingKey, props.ingredients[ingKey])
-
 			<li key={ingKey}>
 				<span style={{ textTransform: 'capitalize' }}>{ingKey}</span>:{' '}
-				{props.ingredients[ingKey]}
+				{this.props.ingredients[ingKey]}
 			</li>
 		);
 	});
 
-	return (
-		<Auxiliary>
-			<h3>Your Order</h3>
-			<p>A delicious burger with the following ingredients:</p>
-			<ul>{ingredientSummary}</ul>
-			<p>
-				<strong>Total Price: {props.price.toFixed(2)}</strong>
-			</p>
-			<p>Continue to Checkout?</p>
-			<Button clicked={props.purchaseCanceled} btnType="Danger">
-				CANCEL
-			</Button>
-			<Button clicked={props.purchaseContinued} btnType="Success">
-				CONTINUE
-			</Button>
-		</Auxiliary>
-	);
-};
+	// using this for debugging - to check for bottle neck like unnecessary re-renders
+	componentWillUpdate() {
+		console.log('[OrderSummary] willUpdate');
+	}
 
-export default orderSummary;
+	render() {
+		return (
+			<Auxiliary>
+				<h3>Your Order</h3>
+				<p>A delicious burger with the following ingredients:</p>
+				<ul>{this.ingredientSummary}</ul>
+				<p>
+					<strong>Total Price: {this.props.price.toFixed(2)}</strong>
+				</p>
+				<p>Continue to Checkout?</p>
+				<Button clicked={this.props.purchaseCanceled} btnType="Danger">
+					CANCEL
+				</Button>
+				<Button clicked={this.props.purchaseContinued} btnType="Success">
+					CONTINUE
+				</Button>
+			</Auxiliary>
+		);
+	}
+}
+
+export default OrderSummary;
