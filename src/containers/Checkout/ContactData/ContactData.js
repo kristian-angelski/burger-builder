@@ -84,27 +84,19 @@ class ContactData extends Component {
 	};
 
 	render() {
+		// Transforming the orderForm object into array, which will be used to dynamically create input elements
+		const formElementsArray = [];
+		for (let key in this.state.orderForm) {
+			formElementsArray.push({
+				id: key,
+				config: this.state.orderForm[key]
+			});
+		}
+
 		let form = (
 			<form>
 				<Input elementType="..." elementConfig="..." value="..." />
-				<Input
-					inputtype="input"
-					type="email"
-					name="email"
-					placeholder="Your email"
-				/>
-				<Input
-					inputtype="input"
-					type="text"
-					name="street"
-					placeholder="Street"
-				/>
-				<Input
-					inputtype="input"
-					type="text"
-					name="postal"
-					placeholder="Postal code"
-				/>
+
 				<Button clicked={this.orderHandler} btnType="Success">
 					ORDER
 				</Button>
